@@ -4,7 +4,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
 
-const {name} = require('./package.json');
+const {name, theme} = require('./package.json');
 
 const NODE_ENV = (process.env.NODE_ENV == 'development' && process.env.NODE_ENV) || 'production';
 
@@ -30,7 +30,11 @@ module.exports = {
             },
             {
                 test: /\.(less|css)$/,
-                use: [MiniCssExtractPlugin.loader, 'css-loader', 'less-loader'],
+                use: [
+                    MiniCssExtractPlugin.loader,
+                    'css-loader',
+                    {loader: 'less-loader', options: {javascriptEnabled: true, modifyVars: theme}},
+                ],
             },
             {
                 test: /\.(jpe?g|png|gif|woff2?|eot|ttf|svg)$/,
