@@ -12,44 +12,50 @@
     "author": "Gilad Novik <gilad@novik.ca>",
     "license": "MIT",
     "dependencies": {
-        "antd": "^3.5.1",
+        "lodash": "^4.17.11",
+        "antd": "^3.10.0",
         "normalize.css": "^8.0.0",
-        "react": "^16.3.2",
-        "react-dom": "^16.3.2",
-        "react-router-dom": "^4.2.2"
+        "react": "^16.5.2",
+        "react-dom": "^16.5.2",
+        "react-router-dom": "^4.3.1"
     },
     "devDependencies": {
-        "babel-core": "^6.26.3",
-        "babel-eslint": "^8.2.3",
-        "babel-loader": "^7.1.4",
         "babel-plugin-dynamic-import-webpack": "^1.0.2",
-        "babel-plugin-import": "^1.7.0",
-        "babel-plugin-transform-class-properties": "^6.24.1",
-        "babel-plugin-transform-decorators-legacy": "^1.3.4",
-        "babel-plugin-transform-object-rest-spread": "^6.26.0",
-        "babel-polyfill": "^6.26.0",
-        "babel-preset-env": "^1.7.0",
-        "babel-preset-react": "^6.24.1",
-        "css-loader": "^0.28.11",
-        "dotenv-webpack": "^1.5.5",
-        "eslint": "^4.19.1",
-        "eslint-loader": "^2.0.0",
-        "eslint-plugin-react": "^7.7.0",
-        "file-loader": "^1.1.11",
+        "babel-plugin-import": "^1.9.1",
+        "@babel/core": "^7.1.2",
+        "@babel/plugin-proposal-class-properties": "^7.1.0",
+        "@babel/plugin-proposal-decorators": "^7.1.2",
+        "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
+        "@babel/polyfill": "^7.0.0",
+        "@babel/preset-env": "^7.1.0",
+        "@babel/preset-react": "^7.0.0",
+        "babel-eslint": "^10.0.1",
+        "babel-loader": "^8.0.4",
+        "babel-plugin-lodash": "^3.3.4",
+        "css-loader": "^1.0.0",
+        "dotenv-webpack": "^1.5.7",
+        "eslint": "^5.6.1",
+        "eslint-loader": "^2.1.1",
+        "eslint-plugin-node": "^7.0.1",
+        "eslint-plugin-react": "^7.11.1",
+        "file-loader": "^2.0.0",
         "html-webpack-plugin": "^3.2.0",
         "html-webpack-template": "^6.2.0",
-        "less": "^3.0.4",
+        "less": "^3.8.1",
         "less-loader": "^4.1.0",
-        "mini-css-extract-plugin": "^0.4.0",
-        "uglifyjs-webpack-plugin": "^1.2.5",
-        "webpack": "^4.8.1",
-        "webpack-cli": "^2.1.3",
-        "webpack-dev-server": "^3.1.4"
+        "mini-css-extract-plugin": "^0.4.3",
+        "node-sass": "^4.9.3",
+        "sass-loader": "^7.1.0",
+        "styled-jsx": "^3.1.0",
+        "uglifyjs-webpack-plugin": "^2.0.1",
+        "webpack": "^4.20.2",
+        "webpack-cli": "^3.1.2",
+        "webpack-dev-server": "^3.1.9"
     },
     "babel": {
         "presets": [
             [
-                "env",
+                "@babel/preset-env",
                 {
                     "modules": false,
                     "targets": {
@@ -57,18 +63,35 @@
                     }
                 }
             ],
-            "react"
+            "@babel/preset-react"
         ],
         "plugins": [
-            "transform-decorators-legacy",
-            "transform-class-properties",
-            "transform-object-rest-spread",
+            "lodash",
+            "styled-jsx/babel",
             "dynamic-import-webpack",
             [
                 "import",
                 {
                     "libraryName": "antd",
                     "style": true
+                }
+            ],
+            [
+                "@babel/plugin-proposal-decorators",
+                {
+                    "legacy": true
+                }
+            ],
+            [
+                "@babel/plugin-proposal-class-properties",
+                {
+                    "loose": true
+                }
+            ],
+            [
+                "@babel/plugin-proposal-object-rest-spread",
+                {
+                    "loose": true
                 }
             ]
         ]
@@ -81,10 +104,22 @@
         "rules": {
             "no-console": 0,
             "strict": 0,
-            "comma-dangle": [1, "always-multiline"],
-            "quotes": [1, "single"],
-            "linebreak-style": [2, "unix"],
-            "semi": [1, "always"],
+            "comma-dangle": [
+                1,
+                "always-multiline"
+            ],
+            "quotes": [
+                1,
+                "single"
+            ],
+            "linebreak-style": [
+                2,
+                "unix"
+            ],
+            "semi": [
+                1,
+                "always"
+            ],
             "no-empty": [
                 1,
                 {
@@ -112,13 +147,18 @@
             "commonjs": true,
             "browser": true
         },
-        "extends": ["eslint:recommended", "plugin:react/recommended"],
+        "extends": [
+            "eslint:recommended",
+            "plugin:react/recommended"
+        ],
         "parserOptions": {
             "ecmaFeatures": {
                 "jsx": true
             }
         },
-        "plugins": ["react"],
+        "plugins": [
+            "react"
+        ],
         "parser": "babel-eslint"
     },
     "theme": {
